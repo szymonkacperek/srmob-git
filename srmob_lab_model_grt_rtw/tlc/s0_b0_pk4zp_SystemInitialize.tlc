@@ -1,0 +1,27 @@
+%implements s0_b0_pk4zp_SystemInitialize "C"
+
+%function SystemInitialize(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+/* InitializeConditions for Integrator: '<S1>/Integrator' */
+srmob_lab_model_X.Integrator_CSTATE[0] = srmob_lab_model_P.u_initial_conditions[0];
+srmob_lab_model_X.Integrator_CSTATE[1] = srmob_lab_model_P.u_initial_conditions[1];
+/* InitializeConditions for Integrator: '<S3>/Integrator' */
+srmob_lab_model_X.Integrator_CSTATE_o[0] = srmob_lab_model_P.q_initial_conditions[0];
+srmob_lab_model_X.Integrator_CSTATE_o[1] = srmob_lab_model_P.q_initial_conditions[1];
+srmob_lab_model_X.Integrator_CSTATE_o[2] = srmob_lab_model_P.q_initial_conditions[2];
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function SystemInitializeFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void SystemInitialize(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%endfunction

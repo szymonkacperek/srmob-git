@@ -1,0 +1,36 @@
+%function FcnLoadCodeIRInfo() Output 
+codeIRInfoStruct = load('/home/szymon/Documents/semestr IX/Sterowanie Robotów Mobilnych/Lab/04srmob_lab/srmob_lab_model_grt_rtw/tlc/codeIRInfo.mat');
+codeInfo = codeIRInfoStruct.codeInfo;
+%endfunction
+
+%function FcnGetIsInheritedSampleTime() void
+%assign tmpIdx = 0
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetDSMIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetEIIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetRootInportsMapFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetEOIdxFromIRInfo() void
+%assign tmpIdx = []
+%return tmpIdx 
+%endfunction
+
+%function FcnGetUnsetParamIdxFromIRInfo() void
+%assign tmpIdx = Matrix(8,2)[[0, 0]; [1, 1]; [2, 2]; [3, 3]; ...
+[4, 4]; [5, 5]; [6, 6]; [7, 7]; ]
+%return tmpIdx 
+%endfunction
+

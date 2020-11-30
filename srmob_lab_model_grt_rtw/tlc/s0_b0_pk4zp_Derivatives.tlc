@@ -1,0 +1,30 @@
+%implements s0_b0_pk4zp_Derivatives "C"
+
+%function Derivatives(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+XDot_srmob_lab_model_T *_rtXdot;
+%closefile localVarDecl
+_rtXdot = %<(SLibCG_SE(SLibGetContStatesDerivativeStructPtr()))>;
+/* Derivatives for Integrator: '<S1>/Integrator' */
+_rtXdot->Integrator_CSTATE[0] = srmob_lab_model_B.u[0];
+_rtXdot->Integrator_CSTATE[1] = srmob_lab_model_B.u[1];
+/* Derivatives for Integrator: '<S3>/Integrator' */
+_rtXdot->Integrator_CSTATE_o[0] = srmob_lab_model_B.modelmatematyczny[0];
+_rtXdot->Integrator_CSTATE_o[1] = srmob_lab_model_B.modelmatematyczny[1];
+_rtXdot->Integrator_CSTATE_o[2] = srmob_lab_model_B.modelmatematyczny[2];
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedDerivativeLocalVars", localVarDecl)>
+%endfunction
+%function DerivativesFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Derivatives(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%endfunction

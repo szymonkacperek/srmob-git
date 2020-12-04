@@ -1,0 +1,124 @@
+%implements s0_b0_pk4zp_Outputs "C"
+
+%function Outputs(block, system) Output
+%<SLibCGIRAccessLocalVar(0, 0, "")> %% rtb_u
+%<SLibCGIRAccessLocalVar(2, 0, "")> %% rtb_K_m
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+real_T inv_J_tmp;
+real_T inv_J_tmp_0;
+real_T inv_J_tmp_1;
+real_T inv_J_tmp_2;
+%closefile localVarDecl
+%assign tlcOutputsFcnOfS0B0 = OpaqueTLCBlockFcn("Outputs", 0, 0, 0, 2)
+%assign tlcOutputsFcnOfS0B1 = OpaqueTLCBlockFcn("Outputs", 0, 1, 0, 2)
+%assign tlcOutputsFcnOfS0B2 = OpaqueTLCBlockFcn("Outputs", 0, 2, 0, 2)
+%assign tlcOutputsFcnOfS0B3 = OpaqueTLCBlockFcn("Outputs", 0, 3, 0, 2)
+/* Integrator: '<S1>/Integrator' */
+rtb_u[0] = srmob_lab_model_X.Integrator_CSTATE[0];
+rtb_u[1] = srmob_lab_model_X.Integrator_CSTATE[1];
+/* Gain: '<S1>/inv_J' incorporates:
+ *  Gain: '<S4>/inv_J'
+ */
+srmob_lab_model_B.inv_J[0] = 0.0;
+inv_J_tmp = srmob_lab_model_P.inv_J[0] * rtb_u[0];
+srmob_lab_model_B.inv_J[0] += inv_J_tmp;
+inv_J_tmp_0 = srmob_lab_model_P.inv_J[2] * rtb_u[1];
+srmob_lab_model_B.inv_J[0] += inv_J_tmp_0;
+srmob_lab_model_B.inv_J[1] = 0.0;
+inv_J_tmp_1 = srmob_lab_model_P.inv_J[1] * rtb_u[0];
+srmob_lab_model_B.inv_J[1] += inv_J_tmp_1;
+inv_J_tmp_2 = srmob_lab_model_P.inv_J[3] * rtb_u[1];
+srmob_lab_model_B.inv_J[1] += inv_J_tmp_2;
+if (%<(SLibCGIRIsSampleHit(1, 0))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B0)
+    /* Scope: '<Root>/Scope' */
+%<tlcOutputsFcnOfS0B0>\
+%endif
+}
+/* Integrator: '<S3>/Integrator' */
+srmob_lab_model_B.Integrator[0] = srmob_lab_model_X.Integrator_CSTATE_o[0];
+srmob_lab_model_B.Integrator[1] = srmob_lab_model_X.Integrator_CSTATE_o[1];
+srmob_lab_model_B.Integrator[2] = srmob_lab_model_X.Integrator_CSTATE_o[2];
+if (%<(SLibCGIRIsSampleHit(1, 0))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B1)
+    /* ToWorkspace: '<Root>/To Workspace' */
+%<tlcOutputsFcnOfS0B1>\
+%endif
+    /* Saturate: '<S4>/Saturation' */
+    if (0.0 > srmob_lab_model_P.u_max[0]) {
+        srmob_lab_model_B.Saturation[0] = srmob_lab_model_P.u_max[0];
+    } else if (0.0 < srmob_lab_model_P.u_min[0]) {
+        srmob_lab_model_B.Saturation[0] = srmob_lab_model_P.u_min[0];
+    } else {
+        srmob_lab_model_B.Saturation[0] = 0.0;
+    }
+    if (0.0 > srmob_lab_model_P.u_max[1]) {
+        srmob_lab_model_B.Saturation[1] = srmob_lab_model_P.u_max[1];
+    } else if (0.0 < srmob_lab_model_P.u_min[1]) {
+        srmob_lab_model_B.Saturation[1] = srmob_lab_model_P.u_min[1];
+    } else {
+        srmob_lab_model_B.Saturation[1] = 0.0;
+    }
+    /* End of Saturate: '<S4>/Saturation' */
+}
+/* Gain: '<S4>/inv_J' */
+rtb_K_m[0] = 0.0;
+rtb_K_m[0] += inv_J_tmp;
+rtb_K_m[0] += inv_J_tmp_0;
+rtb_K_m[1] = 0.0;
+rtb_K_m[1] += inv_J_tmp_1;
+rtb_K_m[1] += inv_J_tmp_2;
+/* Gain: '<S4>/Gain' incorporates:
+ *  Gain: '<S4>/Gain1'
+ */
+inv_J_tmp = srmob_lab_model_P.inv_N[0] * rtb_K_m[0] + srmob_lab_model_P.inv_N[2] * rtb_K_m[1];
+inv_J_tmp_0 = srmob_lab_model_P.inv_N[1] * rtb_K_m[0] + srmob_lab_model_P.inv_N[3] * rtb_K_m[1];
+/* Gain: '<S4>/Gain1' */
+rtb_K_m[0] = 0.0;
+rtb_K_m[0] += srmob_lab_model_P.K_m[0] * inv_J_tmp;
+rtb_K_m[0] += srmob_lab_model_P.K_m[2] * inv_J_tmp_0;
+/* Sum: '<S4>/Sum' */
+rtb_K_m[0] = srmob_lab_model_B.Saturation[0] - rtb_K_m[0];
+/* Gain: '<S4>/Gain1' */
+rtb_K_m[1] = 0.0;
+rtb_K_m[1] += srmob_lab_model_P.K_m[1] * inv_J_tmp;
+rtb_K_m[1] += srmob_lab_model_P.K_m[3] * inv_J_tmp_0;
+/* Sum: '<S4>/Sum' */
+rtb_K_m[1] = srmob_lab_model_B.Saturation[1] - rtb_K_m[1];
+/* Gain: '<S4>/inv_R' incorporates:
+ *  Gain: '<S4>/K_m'
+ */
+inv_J_tmp = srmob_lab_model_P.inv_R_m[0] * rtb_K_m[0] + srmob_lab_model_P.inv_R_m[2] * rtb_K_m[1];
+inv_J_tmp_0 = srmob_lab_model_P.inv_R_m[1] * rtb_K_m[0] + srmob_lab_model_P.inv_R_m[3] * rtb_K_m[1];
+/* Gain: '<S4>/K_m' */
+rtb_K_m[0] = 0.0;
+rtb_K_m[0] += srmob_lab_model_P.K_m[0] * inv_J_tmp;
+rtb_K_m[0] += srmob_lab_model_P.K_m[2] * inv_J_tmp_0;
+rtb_K_m[1] = 0.0;
+rtb_K_m[1] += srmob_lab_model_P.K_m[1] * inv_J_tmp;
+rtb_K_m[1] += srmob_lab_model_P.K_m[3] * inv_J_tmp_0;
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B2)
+/* MATLABFcn: '<S1>/model dynamiczny' */
+%<tlcOutputsFcnOfS0B2>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B3)
+/* MATLABFcn: '<S3>/model matematyczny' */
+%<tlcOutputsFcnOfS0B3>\
+%endif
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction
+%function OutputsFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%endfunction

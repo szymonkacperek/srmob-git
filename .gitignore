@@ -7,3 +7,10 @@
 
 # Videos 
 *.mkv
+
+# Directiories
+slprj/*
+srmob_lab_model_grt_rtw/*
+
+# Cache
+*.slxc

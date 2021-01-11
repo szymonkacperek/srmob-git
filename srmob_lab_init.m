@@ -1,4 +1,4 @@
-%% LABORATORUM SRMob
+%% LABORATORIUM SRMob
 % ĆWICZENIE 1 - Model matematyczny robota mobilnego
 
 % Init file
@@ -8,7 +8,7 @@ close all; clear all; clc
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
-t_end = 22.5; % [s]
+t_end = 15.0; % [s]
 
 %% Robot parameters
 global I_c m b r I_k J I_m n_g
@@ -38,7 +38,7 @@ inv_N = inv(N);
 q_initial_conditions = [0; 0; 0];
 
 % robot start position [m]
-u_initial_conditions = [0; 0];
+u_initial_conditions = [1; 2];
 
 %% Resistance factors
 % wheel rolling, air resistance
@@ -62,28 +62,24 @@ u_min = [-u_limit; -u_limit];
 
 %% Controller synthesis
 % @brief: Inertial object, I rule
+% @param K_p: 
+
 
 K = 84.48/9.0; % [rad/s / V]; 
 T = 0.098; % for 63% of object's answer [s]
 
-% @param: Oscillation object parameters for mobile robots
+% Oscillation object parameters for mobile robots
 zeta_0 = 1; % suppression in [0.707; 1]
 omega_0 = 126.0; % pulsation
 
-% @param: PI tuning
+% PI tuning
 k_p = (2*T*zeta_0*omega_0 - 1) / K;
-% K_p = diag([k_p k_p]);
-K_p = [k_p k_p];
-
 k_i = (T*omega_0^2) / (K*k_p);
-% K_i = diag([k_i k_i]);
-K_i = [k_i k_i];
 
-% @param: Filter
-% T_F = diag([1/k_i 1/k_i]);
+% Filter
 T_F = 1/k_i;
 
-% @param: Anti wind-up
+% Anti wind-up
 k_c = k_i+50; %-1;%54.1;
 
 omega_0_range_and_kp_ki = [1/(2*T*zeta_0) (2*pi*f_p)/zeta_0; k_p k_i]

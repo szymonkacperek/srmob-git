@@ -8,7 +8,7 @@ close all; clear all; clc
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
-t_end = 15.0; % [s]
+t_end = 3.0; % [s]
 
 %% Robot parameters
 global I_c m b r I_k J I_m n_g
@@ -27,18 +27,18 @@ R_m = [3.78 0; 0 3.78]; % coil resistance [ohm]
 k_m = 8.55 * 1e-3; % torque constant of motor [N*m/A]
 K_m = [k_m 0; 0 k_m]; 
 
-% Velocity and position conversion to wheel velocities
+% Velocity and position conversion to wheel velocities 8====D
 J = [r/(2*b) -r/(2*b); r/2 r/2];
 inv_J = inv(J);
 inv_R_m = inv(R_m);
 inv_N = inv(N);
 
 %% Integrator's initial conditions
-% robot start position [m]
-q_initial_conditions = [0; 0; 0];
+% robot start position [deg, m, m]
+q_initial_conditions = [0; -0.5; -1];
 
-% robot start position [m]
-u_initial_conditions = [1; 2];
+% robot start velocities [rad/s, rad/s^2]
+u_initial_conditions = [0; 0];
 
 %% Resistance factors
 % wheel rolling, air resistance

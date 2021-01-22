@@ -70,4 +70,4 @@ end
 %% Output
 q_d = [theta_d x_d y_d];
 u_d = [v_d; omega_d];
-output = [theta_d x_d y_d omega_d v_d s];
+output = [theta_d x_d y_d omega_d v_d s f_xd f_yd];

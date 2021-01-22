@@ -11,7 +11,7 @@ hold on;
 for i=1:N
     figure(101);
     plot(q_d(:, 2), q_d(:, 3));
-    CartPlot([x(i); y(i); theta(i)]);
+    CartPlotZ([x(i); y(i); theta(i)]);
     axis([-2 2 -2 2]);
     plot(x(1:i), y(1:i), 'k');
     hold on;

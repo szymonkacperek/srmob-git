@@ -4,7 +4,7 @@
 % @brief: Dynamic model file
 % @notes:
 
-function u_dot = srmob_lab_model_dynamic(input)
+function u_dot = DynamicModel(input)
 %% Inputs 
 u = input(1:2);
 T = input(3:4);

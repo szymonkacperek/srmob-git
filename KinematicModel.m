@@ -5,7 +5,7 @@
 %---- • NOTATKI
 %
 %% 
-function q_dot = srmob_lab_model_kinematic(input)
+function q_dot = KinematicModel(input)
 
 theta = input(1);
 omega = input(2);

@@ -10,9 +10,12 @@ hold on;
 
 for i=1:N
     figure(101);
-    CartPlot([x(i); y(i); theta(i)]);
+    plot(q_d(:, 2), q_d(:, 3));
+    CartPlotZ([x(i); y(i); theta(i)]);
     axis([-2 2 -2 2]);
-    plot(x(1:i), y(1:i), 'k--');
+    plot(x(1:i), y(1:i), 'k');
+    hold on;
+    plot(q_d(:, 1), q_d(:, 2), 'g:');
     grid on;
     hold off;
     pause(0.001);
@@ -20,7 +23,9 @@ end
 
 figure(101);
 hold off;
-plot(x, y, 'k--');
+plot(x, y, 'k');
+hold on;
+plot(q_d(:, 2), q_d(:, 3), 'g:');
 hold on;
 grid on;
 axis([-2 2 -2 2]);

@@ -3,7 +3,7 @@
 
 % Velocity scaling block
 
-function Omega_ds = srmob_lab_model_vsc(input)
+function Omega_ds = VelocityScalingBlock(input)
 
 %% Inputs
 Omega_dc = input(1:2);

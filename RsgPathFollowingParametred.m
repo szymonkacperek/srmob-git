@@ -43,6 +43,7 @@ switch chosen_trajectory
         
         % s param (8.57)
         s = (atan(p_1/A)*abs(A*mi))/mi;
+        % s = (atan2(p_1/A)*abs(A*mi))/mi;
         
         % trajectory
         f_xd = A*cos((mi*s)/abs(A*mi));

@@ -1,20 +1,18 @@
 function wy = CartPlotZ(we)
 %% funkcja rysuje kontur robota (2,0) w konfiguracji [x0 y0 teta0] i pozycj� punktu Z
 
-global Lz beta;
+global L_Z beta_Z;
 
 x0 = we(1);
 y0 = we(2);
 teta0 = we(3);
-% teta0 = q(:, 1);
-% x0 = q(:, 2);
-% y0 = q(:, 3);
+
 %-------------------------------------------------------------------------
-if isempty(Lz)
-    Lz = 0;
+if isempty(L_Z)
+    L_Z = 0;
 end
-if isempty(beta)
-    beta = 0;
+if isempty(beta_Z)
+    beta_Z = 0;
 end
 %-------------------------------------------------------------------------
 P0 = [x0; y0];
@@ -39,7 +37,7 @@ Kl0y = [D0y(2)+r*sin(teta0); D0y(2)-r*sin(teta0)];
 PL1 = [a; 0];
 PL2 = [-b; c];
 PL3 = [-b; -c];
-ZL1 = [Lz*cos(beta); Lz*sin(beta)];
+ZL1 = [L_Z*cos(beta_Z); L_Z*sin(beta_Z)];
 
 R = [cos(teta0) -sin(teta0); sin(teta0) cos(teta0)];
 
@@ -56,6 +54,7 @@ hold on;
 plot(ZG(:,1),ZG(:,2),'r','LineWidth',0.8);
 plot(x0,y0,'bo','LineWidth',0.5);
 plot(ZG1(1),ZG1(2),'ro','LineWidth',0.5);
+
 
 plot(D0x,D0y,'k','LineWidth',0.8);               %rysowanie osi k�
 plot(Kp0x,Kp0y,'k','LineWidth',1.3);             %rysowanie ko�a P

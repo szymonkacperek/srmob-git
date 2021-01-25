@@ -1,0 +1,28 @@
+function output = LinearMethodsController(input)
+%% Inputs
+q_dZ = input(1:2);
+q_Z = input(3:4);
+
+%% Constants
+% distance from P point [m]
+L_Z = 0.2; 
+
+% angle between L_Z and x^L [deg]
+beta_Z = 0.3;
+
+%% Movement of Z = (z_x z_y) point 
+% Z coordinates
+x_Z = x + L_Z*cos(theta + beta_Z);
+y_Z = y + L_Z*sin(theta + beta_Z);
+q_Z = [x_Z; y_Z];
+
+e_Z = q_dZ - q_Z;
+
+D = [-L_Z*sin(theta + beta_Z) cos(theta);
+    L_Z*cos(theta + beta_Z)] sin(theta)];
+
+w = q_dZ_dot + K*e_z;
+
+%% Output
+output = [omega_d u_d];
+

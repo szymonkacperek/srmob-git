@@ -90,7 +90,7 @@ else
 end
 
 
-% Velocities with trajectory degeneration prevention (page 81)
+%% Velocities with trajectory degeneration prevention (page 81)
 v_d = zeta_d*sqrt(f_xd_dot^2 + f_yd_dot^2);
 if v_d == 0         
     v_d = 1.0;    

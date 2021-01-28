@@ -31,11 +31,11 @@ switch chosen_plot
             figure(101);
             CartPlotZ([x(i); y(i); theta(i)]);
             axis([-2 2 -2 2]);
-            plot(x(1:i), y(1:i), 'k');
-        %     plot(x_Z(1:i), y_Z(1:i),'k');
+%             plot(x(1:i), y(1:i), 'k');
+            plot(x_Z(1:i), y_Z(1:i),'k');
             hold on;
-        %     plot(q_d(:, 2), q_d(:, 3), 'g:');
-            plot(q_d(:, 2), q_d(:, 3), 'go');
+            plot(q_d(:, 2), q_d(:, 3), 'g:');
+%             plot(q_d(:, 2), q_d(:, 3), 'go');
             grid on;
             hold off;
             pause(0.001);

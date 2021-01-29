@@ -9,7 +9,6 @@ x = q(2);
 y = q(3);
 
 %% Parameters
-zeta_d = 1;
 sigma = 0.6;
 a = 1.0;
 b = 2.0;
@@ -37,16 +36,5 @@ switch chosen_trajectory
         f_yd_dotdot = sigma*((1/(b^n))*n*(n-1)*y^(n-2)*(sign(y))^n);     
 end
 
-%% Vectors needed to count velocities
-% Ortogonal to contour gradient 
-% nabla_f_d = gradient(f_d);
-
-%% Velocities with trajectory degeneration prevention (page 81)
-omega_d = (f_yd_dotdot*f_xd_dot - f_yd_dot*f_xd_dotdot)/(f_xd_dot^2 + f_yd_dot^2);
-v_d = zeta_d*sqrt(f_xd_dot^2 + f_yd_dot^2);
-if v_d == 0         
-    v_d = 0.001;
-end
-
 %% Output
-output = [omega_d v_d f_xd_dot f_yd_dot];
+output = [f_xd_dot f_yd_dot];

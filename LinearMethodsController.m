@@ -35,7 +35,7 @@ w = q_dZ_dot + K*e_Z;
 u = inv_D*w;
 
 %% Output
-omega = u(1);
-v = u(2);
-output = [omega v e_Z(1) e_Z(2)];
+omega_d = u(1);
+v_d = u(2);
+output = [omega_d v_d e_Z(1) e_Z(2)];
 

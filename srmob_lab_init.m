@@ -8,9 +8,9 @@ close all; clear all; clc
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
-t_end = 15.0; % [s]
+t_end = 35.0; % [s]
 
-%% Robot parameters
+%% Robot dynamics
 global I_c m b r I_k J I_m n_g
 m = 0.6; % mass with battery [kg]
 b = 0.033; % half of the track width [m]
@@ -27,7 +27,7 @@ R_m = [3.78 0; 0 3.78]; % coil resistance [ohm]
 k_m = 8.55 * 1e-3; % torque constant of motor [N*m/A]
 K_m = [k_m 0; 0 k_m]; 
 
-% Velocity and position conversion to wheel velocities
+% Velocity and position conversion to wheel velocities (page 51)
 J = [r/(2*b) -r/(2*b); r/2 r/2];
 inv_J = inv(J);
 inv_R_m = inv(R_m);
@@ -63,7 +63,6 @@ u_min = [-u_limit; -u_limit];
 %% Controller synthesis
 % @brief: Inertial object, I rule
 % @param K_p: 
-
 
 K = 84.48/9.0; % [rad/s / V]; 
 T = 0.098; % for 63% of object's answer [s]

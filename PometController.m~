@@ -25,24 +25,18 @@ Omega = 1;
 
 %% Parametrical synthesis
 norm_e_tilde_v1 = (norm([e_x_tilde; e_y_tilde], 2))^2;
-norm_e_tilde_v2 = (norm_e_tilde_v1)/(norm_e_tilde_v1 + delta_p);
+norm_e_tilde_v2 = norm_e_tilde_v1/(norm_e_tilde_v1 + cos(Omega+t));
 
 % h (5.35)
 h_1 = k_4*norm_e_tilde_v1*cos(Omega*t);
-dhdt_1 = -Omega*k_4*norm_e_tilde_v1*sin(Omega*t);
+dhdt = -Omega*k_4*norm_e_tilde_v1*sin(Omega*t);
 
-% h (5.36)
-h_2 = k_4*cos(Omega*t)*norm_e_tilde_v2;
-dhdt_2 = -Omega*k_4*norm_e_tilde_v2*sin(Omega*t);
+h (5.36)
+h_2 = (k4*norm_e_tilde_v1*cos(Omega*t))/(norm_e_tilde_v1 + delta_p);
+dhdt = -Omega*k_4*norm_e_tilde_v2*sin(Omega*t);
 
 % Choose 'h' function form (5.35) or (5.36)
-chosen_h = 2;
-switch chosen_h
-    case 1
-        h = h_1; dhdt = dhdt_1;
-    case 2
-        h = h_2; dhdt = dhdt_2;
-end
+h = h_2;
 
 dVde_theta_tilde = k_1*(e_theta_tilde+h);
 dVde_x_tilde = e_x_tilde*(k_2 + 2*k_4*cos(Omega*t)*k_1*(e_theta_tilde+h));

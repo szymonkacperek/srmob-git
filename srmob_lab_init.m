@@ -8,7 +8,7 @@ close all; clear all; clc
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
-t_end = 15.0; % [s]
+t_end = 35.0; % [s]
 
 %% Robot dynamics
 global I_c m b r I_k J I_m n_g

@@ -50,7 +50,7 @@ switch chosen_trajectory
     case 4
         A_dx = 0.5;
         A_dy = 0.5;
-        theta_d = 0.5;
+        theta_d = 0.0;
         omega_dx = 0;
         omega_dy = 0;
         psi_dx = 0;

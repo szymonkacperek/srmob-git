@@ -10,7 +10,7 @@ N = size(x, 1);
 %% Choose plot format for:   
 %   (1) - TT (for linear controller)
 %   (2) - PS (for linear controller)
-%   (3) - PS (for Pomet controller, with theta_d)
+%   (3) - PS (for Pomet controller & VFO, with theta_d)
 chosen_plot = 3;
 
 %% TT
@@ -67,7 +67,7 @@ switch chosen_plot
 
         for i=1:N
             figure(101);
-            CartPlotZ([x(i); y(i); theta(i)]);
+            CartPlot([x(i); y(i); theta(i)]);
             axis([-2 2 -2 2]);
             plot(x(1:i), y(1:i), 'k');
         %     plot(x_Z(1:i), y_Z(1:i),'k');
@@ -101,9 +101,9 @@ switch chosen_plot
         y_d = q_d(1, 3);
         
         % point needed to plot straight line showing theta_d angle
-        x_beta_begin = x_d - 0.1;
+        x_beta_begin = x_d - 1;
         y_beta_begin = tan(theta_d)*x_beta_begin + (y_d - tan(theta_d)*x_d);
-        x_beta_end = x_d + 0.1;
+        x_beta_end = x_d + 1;
         y_beta_end = tan(theta_d)*x_beta_end + (y_d - tan(theta_d)*x_d);
         
         figure(101);
@@ -114,7 +114,7 @@ switch chosen_plot
             figure(101);
             plot(q_d(1, 2), q_d(1, 3), 'go', 'Linewidth', 0.9);
             hold on;
-            plot([x_beta_begin x_d x_beta_end], [y_beta_begin y_d y_beta_end], 'g');
+            plot([x_beta_begin x_d x_beta_end], [y_beta_begin y_d y_beta_end], 'g--');
             hold on;
             plot(x_beta_end, y_beta_end, 'k.');
             hold on;

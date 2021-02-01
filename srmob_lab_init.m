@@ -5,7 +5,6 @@
 close all; clear all; clc
 
 %% Simulation parameters
-global t_pp
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
@@ -25,7 +24,7 @@ m_k = 0.03; % mass of a wheel [kg]
 I_k = (m_k*r^2)/2; % wheel inertia [kg*m^2]
 I_m = 4.22 * 1e-3 * 1e-4; % electric rotor inertia [kg*m^2/A]`
 R_m = [3.78 0; 0 3.78]; % coil resistance [ohm]
-k_m = 8.55 * 1e-3; % torque constant of motor [N*m/A]
+k_m = 8.55 * 1e-3; % torque constant of motor [N*m/A]`
 K_m = [k_m 0; 0 k_m]; 
 
 % Velocity and position conversion to wheel velocities (page 51)
@@ -36,7 +35,7 @@ inv_N = inv(N);
 
 %% Integrator's initial conditions
 % robot start position [deg, m, m]
-q_initial_conditions = [0; -0.5; -1];
+q_initial_conditions = [0; 0.6; 0.6];
 
 % robot start velocities [rad/s, rad/s^2]
 u_initial_conditions = [0; 0];

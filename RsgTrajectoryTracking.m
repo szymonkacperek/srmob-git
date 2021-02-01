@@ -23,7 +23,7 @@ switch chosen_trajectory
     case 1
         A_dx = 1;
         A_dy = 1;
-        omega_dx = 0.5;
+        omega_dx = 0.2;
         omega_dy = omega_dx;
         psi_dx = 0;
         psi_dy = 0;
@@ -98,15 +98,16 @@ end
 omega_d = (f_yd_dotdot*f_xd_dot - f_yd_dot*f_xd_dotdot)/(f_xd_dot^2 + f_yd_dot^2);
 
 % Configuration, theta_d \in (-pi, pi], theta_d_cont \in R
+global old_theta_d
 if chosen_trajectory ~= 4 
     theta_d = atan2(zeta_d*f_yd_dot, zeta_d*f_xd_dot);
+    theta_d_cont = Atan2c(zeta_d*f_yd_dot, zeta_d*f_xd_dot, old_theta_d);
 end
+old_theta_d = theta_d;
 
 x_d = f_xd;
 y_d = f_yd;
-q_d = [theta_d x_d y_d];
 
 %% Output
-u_d = [v_d; omega_d];
 output = [theta_d x_d y_d omega_d v_d f_xd_dot f_yd_dot f_xd_dotdot f_yd_dotdot];
 

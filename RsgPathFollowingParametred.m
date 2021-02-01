@@ -23,7 +23,7 @@ switch chosen_trajectory
         A_y = -0.5;
         % P_S point coordinates (3.54, 3.55)
         p_1 = ((A_x*A_y)/(A_x^2 + A_y^2))*y + (A_x^2/(A_x^2 + A_y^2))*x;
-        p_2 = (A_y^2/(A_x^2 + A_y^2))*y + ((A_x*A_y)/(A_x^2 + A_y^2))*x;
+%         p_2 = (A_y^2/(A_x^2 + A_y^2))*y + ((A_x*A_y)/(A_x^2 + A_y^2))*x;
         
         % s param value (8.53)
         s = (p_1*sqrt(A_x^2 + A_y^2))/A_x;
@@ -36,14 +36,13 @@ switch chosen_trajectory
         f_xd_dotdot = 0;
         f_yd_dotdot = 0;
         
-    case 1 % circle
-        A = 0.5; % radius [m]
-        mi = 1;        
-        p_1 = (sign(x)*abs(A)*abs(x))/sqrt(x^2 + y^2);
+    case 1 % circle - q_initial_conditions must be != 0
+        A = 1.0; % radius [m]
+        mi = 0.1;        
+        p_1 = sign(x)*abs(A)*abs(x)/sqrt(x^2 + y^2);
         
         % s param (8.57)
         s = (atan(p_1/A)*abs(A*mi))/mi;
-        % s = (atan2(p_1/A)*abs(A*mi))/mi;
         
         % trajectory
         f_xd = A*cos((mi*s)/abs(A*mi));
@@ -52,7 +51,6 @@ switch chosen_trajectory
         f_yd_dot = sign(A*mi)*cos((mi*s)/abs(A*mi));
         f_xd_dotdot = -(1/A)*cos((mi*s)/abs(A*mi));
         f_yd_dotdot = -(1/A)*sin((mi*s)/abs(A*mi));
-        
 end
 
 %% Signals
@@ -67,8 +65,10 @@ v_d = zeta_d*sqrt(f_xd_dot^2 + f_yd_dot^2);
 if v_d == 0         
     v_d = 0.001;
 end
+ 
+% Curvature (3.28)
+kappa_d = omega_d*zeta_d;
 
 %% Output
-q_d = [theta_d x_d y_d];
-u_d = [v_d; omega_d];
-output = [theta_d x_d y_d omega_d v_d s f_xd f_yd];
+output = [theta_d x_d y_d omega_d v_d kappa_d];
+

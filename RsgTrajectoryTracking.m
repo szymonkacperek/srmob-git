@@ -108,5 +108,5 @@ q_d = [theta_d x_d y_d];
 
 %% Output
 u_d = [v_d; omega_d];
-output = [theta_d x_d y_d omega_d v_d f_xd_dot f_yd_dot];
+output = [theta_d x_d y_d omega_d v_d f_xd_dot f_yd_dot f_xd_dotdot f_yd_dotdot];
 

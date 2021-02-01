@@ -50,7 +50,7 @@ switch chosen_trajectory
     case 4
         A_dx = 0.5;
         A_dy = 0.5;
-        theta_d = 0.5;
+        theta_d = 0;
         omega_dx = 0;
         omega_dy = 0;
         psi_dx = 0;
@@ -90,7 +90,6 @@ else
     f_yd_dotdot = -A_dy*omega_dy^2*sin(omega_dy*t + psi_dy);
 end
 
-
 %% Velocities with trajectory degeneration prevention (page 81)
 v_d = zeta_d*sqrt(f_xd_dot^2 + f_yd_dot^2);
 if v_d == 0         
@@ -98,15 +97,16 @@ if v_d == 0
 end
 omega_d = (f_yd_dotdot*f_xd_dot - f_yd_dot*f_xd_dotdot)/(f_xd_dot^2 + f_yd_dot^2);
 
-% Configuration, theta_d \in (-pi, pi]
+% Configuration, theta_d \in (-pi, pi], theta_d_cont \in R
 if chosen_trajectory ~= 4 
     theta_d = atan2(zeta_d*f_yd_dot, zeta_d*f_xd_dot);
 end
+
 x_d = f_xd;
 y_d = f_yd;
 q_d = [theta_d x_d y_d];
 
 %% Output
 u_d = [v_d; omega_d];
-output = [theta_d x_d y_d omega_d v_d f_xd_dot f_yd_dot];
+output = [theta_d x_d y_d omega_d v_d f_xd_dot f_yd_dot f_xd_dotdot f_yd_dotdot];
 

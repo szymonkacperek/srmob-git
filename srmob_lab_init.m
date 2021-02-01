@@ -5,6 +5,7 @@
 close all; clear all; clc
 
 %% Simulation parameters
+global t_pp
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
@@ -91,3 +92,8 @@ global omega_k_max
 
 % @param: Maximal wheel velocity
 omega_k_max = 80.0; % [rad/s]
+
+%% Atan2c
+global old_theta_d old_theta_a
+old_theta_d = 0;
+old_theta_a = 0;

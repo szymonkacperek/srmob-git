@@ -48,8 +48,8 @@ switch chosen_trajectory
         
     % Point
     case 4
-        A_dx = 0.5;
-        A_dy = 0.5;
+        A_dx = -1.5;
+        A_dy = 1.5;
         theta_d = 0;
         omega_dx = 0;
         omega_dy = 0;

@@ -10,7 +10,7 @@ N = size(x, 1);
 %   (2) - PS (for linear controller)
 %   (3) - PS (for Pomet controller & VFO, with theta_d)
 %   (4) - TT (VFO)
-chosen_plot = 4;
+chosen_plot = 3;
 
 %% TT
 switch chosen_plot
@@ -49,10 +49,10 @@ switch chosen_plot
         hold on;
         grid on;
         axis([-2 2 -2 2]);
-        CartPlot([x(1); y(1); theta(1)]);
+        CartPlotZ([x(1); y(1); theta(1)]);
         ind = round(N/2);
-        CartPlot([x(ind); y(ind); theta(ind)]);
-        CartPlot([x(end); y(end); theta(end)]);
+        CartPlotZ([x(ind); y(ind); theta(ind)]);
+        CartPlotZ([x(end); y(end); theta(end)]);
 
         
     case 2 
@@ -129,7 +129,6 @@ switch chosen_plot
         figure(101);
         hold off;
         % plot(x, y, 'k');
-        plot(x_Z(1:i), y_Z(1:i),'k');
         hold on;
         plot(q_d(:, 2), q_d(:, 3), 'g:');
         hold on;

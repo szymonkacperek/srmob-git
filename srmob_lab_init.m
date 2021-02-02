@@ -8,7 +8,7 @@ close all; clear all; clc
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
-t_end = 35.0; % [s]
+t_end = 16.0; % [s]
 
 %% Robot dynamics
 global I_c m b r I_k J I_m n_g
@@ -35,7 +35,7 @@ inv_N = inv(N);
 
 %% Integrator's initial conditions
 % robot start position [deg, m, m]
-q_initial_conditions = [0; 0.6; 0.6];
+q_initial_conditions = [0; 0; -0.5];
 
 % robot start velocities [rad/s, rad/s^2]
 u_initial_conditions = [0; 0];

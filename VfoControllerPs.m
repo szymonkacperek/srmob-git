@@ -61,5 +61,5 @@ old_theta_a = theta_a;
 u_1 = k_a*(theta_a - theta) + theta_a_dot;
 
 %% Output
-output = [u_1 u_2 e_x e_y];
+output = [u_1 u_2 e_theta e_x e_y];
 

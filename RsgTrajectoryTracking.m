@@ -10,14 +10,14 @@ zeta_d = 1;
 
 % @param X_d, Y_d: middle of the trajectory shape described relatively to 
 %                  global coordinates system
-X_d = 0;
-Y_d = 0;
+X_d = -1;
+Y_d = -1;
 
 switch chosen_trajectory
     % Straight line
     case 0
-        A_dx = -0.5;
-        A_dy = 0.5;
+        A_dx = 0.5;
+        A_dy = A_dx;
 
     % Circle shape
     case 1

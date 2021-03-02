@@ -8,7 +8,7 @@ close all; clear all; clc
 f_p = 18; % [Hz]
 t_p = 2.0; % [s]
 t_pp = 0.2; % [s]
-t_end = 16.0; % [s]
+t_end = 30.0; % [s]
 
 %% Robot dynamics
 global I_c m b r I_k J I_m n_g
@@ -25,7 +25,7 @@ I_k = (m_k*r^2)/2; % wheel inertia [kg*m^2]
 I_m = 4.22 * 1e-3 * 1e-4; % electric rotor inertia [kg*m^2/A]`
 R_m = [3.78 0; 0 3.78]; % coil resistance [ohm]
 k_m = 8.55 * 1e-3; % torque constant of motor [N*m/A]`
-K_m = [k_m 0; 0 k_m]; 
+K_m = [k_m 0; 0 k_m];   
 
 % Velocity and position conversion to wheel velocities (page 51)
 J = [r/(2*b) -r/(2*b); r/2 r/2];

@@ -48,7 +48,7 @@ switch chosen_trajectory
         
     % Point
     case 4
-        A_dx = -1.5;
+        A_dx = 1.5;
         A_dy = 1.5;
         theta_d = 0;
         omega_dx = 0;
@@ -83,7 +83,7 @@ else
     f_xd = X_d + A_dx*cos(omega_dx*t + psi_dx);
     f_yd = Y_d + A_dy*sin(omega_dy*t + psi_dy);
     
-    f_xd_dot = -A_dx*omega_dx*sin(omega_dx*t + psi_dx);
+    f_xd_dot = -A_dx*omega_dx*sin(omega_dx*t + psi_dx); 
     f_yd_dot = A_dy*omega_dy*cos(omega_dy*t + psi_dy);
     
     f_xd_dotdot = -A_dx*omega_dx^2*cos(omega_dx*t + psi_dx);

@@ -6,11 +6,11 @@ y = q(:, 3);
 N = size(x, 1);
 
 %% Choose plot format for:   
-%   (1) - TT (for linear controller)
+%   (1) - TT (for linear controller (Z))
 %   (2) - PS (for linear controller)
 %   (3) - PS (for Pomet controller & VFO, with theta_d)
-%   (4) - TT (VFO)
-chosen_plot = 2;
+%   (4) - TT (VFO, linear)
+chosen_plot = 4;
 
 %% TT
 switch chosen_plot
